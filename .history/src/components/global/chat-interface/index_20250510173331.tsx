@@ -39,25 +39,18 @@ const ChatUI: React.FC = () => {
     setIsLoading(true);
 
     try {
-      // Make API call to backend
-      const response = await fetch('/api/chat', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          messages: [...messages, newMessage],
-          chatId: activeChatId || 'new' // Handle new chats
-        }),
-      });
-
-      if (!response.ok) throw new Error('Failed to get response');
+      // Simulate AI response (replace with actual API call)
+      await new Promise(resolve => setTimeout(resolve, 1000));
       
-      const data = await response.json();
-      setMessages(prev => [...prev, data.message]);
+      const aiResponse: Message = {
+        id: Date.now() + 1,
+        text: "This is a simulated AI response.",
+        sender: 'ai'
+      };
+      
+      setMessages(prev => [...prev, aiResponse]);
     } catch (error) {
       console.error('Failed to get AI response:', error);
-      // Show error toast
     } finally {
       setIsLoading(false);
     }
